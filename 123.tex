@@ -1,0 +1,287 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Настройка шрифтов
+\usepackage{fontspec}
+
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont{Courier New}
+
+\defaultfontfeatures{Ligatures=TeX} % Ligatures=TeX чтобы в XeLaTeX работали "--" и "---"
+
+%%% Работа с русским языком
+
+\usepackage{polyglossia}
+\setmainlanguage[spelling=modern]{russian}
+\setotherlanguage{english}
+
+\usepackage{csquotes} % Ковычки в соответствии с основным языком
+
+%% Включение кириллицы для шрифтов
+
+\newfontfamily{\cyrillicfont}{Times New Roman}
+\newfontfamily{\cyrillicfonttt}{Courier New}
+\newfontfamily{\cyrillicfontsf}{Arial}
+
+\usepackage{indentfirst}     % Красная строка для всех абзацев
+
+%% Греческие буквы и математические символы согласно русской традиции
+
+\renewcommand{\epsilon}{\ensuremath{\varepsilon}}
+\renewcommand{\phi}{\ensuremath{\varphi}}
+\renewcommand{\kappa}{\ensuremath{\varkappa}}
+\renewcommand{\le}{\ensuremath{\leqslant}}
+\renewcommand{\leq}{\ensuremath{\leqslant}}
+\renewcommand{\ge}{\ensuremath{\geqslant}}
+\renewcommand{\geq}{\ensuremath{\geqslant}}
+\renewcommand{\emptyset}{\varnothing}
+
+%%% Дополнительная работа с математикой
+
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+\usepackage[labelsep=endash, tableposition=top, figureposition=bottom]{caption}
+
+%%% Работа с картинками
+
+\usepackage{graphicx} % Для вставки рисунков
+\graphicspath{{images/}} % папки с картинками
+\usepackage{wrapfig}  % Обтекание рисунков текстом
+
+%%% Работа с таблицами
+
+\usepackage{tabularx,tabulary} % Дополнительная работа с таблицами
+\usepackage{longtable}         % Длинные таблицы
+\usepackage{multirow}          % Слияние строк в таблице
+\usepackage{csvsimple}         % Загрузить csv таблицу
+
+\captionsetup[table]{
+    justification=centering, % RaggedRight
+%    labelsep=endash,
+    parskip=0pt,
+    singlelinecheck=false,
+    skip=0pt,
+    aboveskip=0pt,
+    belowskip=0pt
+}
+
+\captionsetup[figure]{
+%    name=Рисунок, % Подпись "Рисунок" а не "рис."
+    justification=centering,
+%    labelsep=endash,
+    parskip=0pt,
+    skip=0pt,
+    aboveskip=0pt,
+    belowskip=0pt
+}
+
+%%% Страница
+
+\usepackage{extsizes}        % Возможность сделать 14-й шрифт
+
+\setlength\parindent{1.25cm} % Красная строка 1.25 см
+
+\usepackage{geometry}        % Задать поля
+\geometry{top=20mm}
+\geometry{bottom=20mm}
+\geometry{left=20mm}
+\geometry{right=10mm}
+
+\usepackage{fancyhdr}                % Колонтитулы
+% \renewcommand{\headrulewidth}{0pt} % Толщина линейки, отчеркивающей верхний колонтитул
+% \pagestyle{fancy}
+% \lfoot{Нижний левый}
+% \rfoot{Нижний правый}
+% \rhead{Верхний правый}
+% \chead{Верхний в центре}
+% \lhead{Верхний левый}
+% \cfoot{Нижний в центре}            % По умолчанию здесь номер страницы
+
+\usepackage{setspace} % Интерлиньяж (междустрочный интервал)
+\onehalfspacing       % Интерлиньяж 1.5
+
+\usepackage{lastpage} % Узнать, сколько всего страниц в документе.
+
+\usepackage{hyperref} % Гиперссылки
+
+\usepackage[usenames,dvipsnames,svgnames,table,rgb]{xcolor}
+
+\hypersetup{				                         % Настройка гиперссылок
+    unicode=true,                                    % русские буквы в раздела PDF
+    pdftitle={Практическое задание \textnumero 1},   % Заголовок
+    pdfauthor={Александр Рыбин},                     % Автор
+    pdfsubject={Практическое задание \textnumero 1}, % Тема
+    pdfcreator={Александр Рыбин},                    % Создатель
+    pdfproducer={},                                  % Производитель
+    pdfkeywords={\LaTeX} {Coursera} {Практика},      % Ключевые слова
+    colorlinks=true,       	                         % false: ссылки в рамках; true: цветные ссылки
+    linkcolor=red,                                   % внутренние ссылки
+    citecolor=green,                                 % на библиографию
+    filecolor=magenta,                               % на файлы
+    urlcolor=cyan                                    % на URL
+}
+
+%%% Работа с графикой
+
+\usepackage{tikz} % Работа с графикой
+
+%%% Разное
+
+\usepackage{titling} % Титульная страница
+\usepackage{lipsum} % Вставка "бессмысленного" текста для примеров и отладки
+
+%%% Мета информация
+
+
+
+\begin{document} % конец преамбулы, начало документа
+    \begin{titlingpage}
+        \maketitle
+    \end{titlingpage}
+
+    \newpage
+
+    Пусть рис. \ref{fig:fig21} представляет положения Солнца $S$, Земли $T$ и Луны $L$, пусть $\Theta$ есть центр тяжести Земли и Луны. Делаем следующие обозначения:
+    \begin{table}[h]
+        \centering
+        \caption{Обозначения}\label{tab:designations}
+        \begin{tabular}{cccc}
+           Масса & Солнца & . . . . . & $S$ \\
+           >>    & Земли  & . . . . . & $T$ \\
+           >>    & Луны   & . . . . . & $L$ \\
+        \end{tabular}
+    \end{table}
+
+    Расстояние:
+    \[S\Theta=\rho;ST=\rho_1; SL=\rho_2; TL=r\]
+    тогда будет:
+    \begin{equation}
+        \begin{aligned}
+            T\Theta &= r_1 = \frac{L}{T + L} \cdot r \\
+            L\Theta &= r_2 = \frac{L}{T + L} r
+        \end{aligned}
+    \end{equation}
+
+    Составим теперь выражения ускорений, которые эти тела сообщают друг другу.
+    \begin{figure}[h]
+        \centering
+        \includegraphics{21.png}
+        \caption{}\label{fig:fig21}
+    \end{figure}
+
+    Солнце $S$ сообщает ускорения:
+    \begin{center}
+        \begin{tabular}{ccccc}
+            Земле & $\displaystyle f \cdot \frac{S}{p_1^2}$ & по & направлению & $TS$ \\[2ex]
+            Луне  & $\displaystyle f \cdot \frac{S}{p_2^2}$ & >> & >>          & $LS$ \\
+        \end{tabular}
+    \end{center}
+    вследствие чего точка $\Theta$ имеет ускорения:
+    \begin{center}
+        \begin{tabular}{ccccc}
+            $\displaystyle \frac{L}{T + L} \cdot f \cdot \frac{S}{p_1^2}$ & по & направлению, & параллельному & $TS$ \\[2ex]
+            $\displaystyle \frac{L}{T + L} \cdot f \cdot \frac{S}{p_1^2}$ & >> & >> & >> & $LS$ \\
+        \end{tabular}
+    \end{center}
+
+    Ускорения Солнца, происходящие от Земли и Луны, соответственно суть:
+    \begin{center}
+        \begin{tabular}{cccc}
+            $\displaystyle f \cdot \frac{T}{p_1^2}$ & по  & направлению & $ST$ \\[2ex]
+            $\displaystyle f \cdot \frac{L}{p_2^2}$ & >>  & >>          & $SL$ \\
+        \end{tabular}
+    \end{center}
+    поэтому ускорения точки $\Theta$ относительно точки $S$ будут:
+    \begin{center}
+        \begin{tabular}{ccccc}
+            $\displaystyle \omega_1=f \cdot \frac{\left(S + T + L \right)}{T + L} \cdot \frac{T}{p_1^2}$ & по & направлению, & параллельному & $TS$ \\[2ex]
+            $\displaystyle \omega_2=f \cdot \frac{\left(S + T + L \right)}{T + L} \cdot \frac{T}{p_2^2}$ & >> & >> & >> & $LS$ \\
+        \end{tabular}
+    \end{center}
+
+    Разлагая эти ускорения, соответственно, по направлениям $\Theta S$ и $\Theta L$, получим, как легко видеть из подобия показанных на рис. \ref{fig:fig22} и \ref{fig:fig23} треугольников:
+    \begin{center}
+        \begin{tabular}{cccc}
+            $\displaystyle \omega_1^{'} = \omega_1 \cdot \frac{\rho}{\rho_1} $ & по  & направлению & $\Theta S$ \\[2ex]
+            $\displaystyle \omega_1^{''} = \omega_1 \cdot \frac{r_1}{\rho_1} $ & по  & направлению & $\Theta L$ \\[2ex]
+            $\displaystyle \omega_2^{'} = \omega_2 \cdot \frac{\rho}{\rho_2} $ & по  & направлению & $\Theta S$ \\[2ex]
+            $\displaystyle \omega_2^{''} = \omega_2 \cdot \frac{r_2}{\rho_2} $ & по  & направлению & $L \Theta$ \\
+        \end{tabular}
+    \end{center}
+    \begin{figure}[h]
+        \centering
+        \includegraphics{22.png}
+        \caption{}\label{fig:fig22}
+    \end{figure}
+
+    Получим для ускорений точки $\Theta$ слагающие:
+    \begin{center}
+        \begin{tabular}{ccc}
+            $\displaystyle W_1 = \omega_1^{'} + \omega_2^{'} = f \cdot \frac{S + L + T}{T + L} \cdot \left[T \cdot \frac{\rho}{\rho_1^3} + L \cdot \frac{\rho}{\rho_2^3} \right] $ & по & $\Theta S$ \\[2ex]
+            $\displaystyle W_2 = \omega_1^{''} - \omega_2^{''} = f \cdot \frac{S + L + T}{T + L} \cdot \left[T \cdot \frac{r_1}{\rho_1^3} - L \cdot \frac{r_2}{\rho_2^3} \right] $ & по & $\Theta L$ \\
+        \end{tabular}
+    \end{center}
+    \begin{figure}[h]
+        \centering
+        \includegraphics{23.png}
+        \caption{}\label{fig:fig23}
+    \end{figure}
+
+    Заменив $r_1$ и $r_2$ их выражениями \eqref{tab:designations}, имеем:
+    \begin{equation*}
+        \begin{aligned}
+            W_1 = f \cdot \frac{S + T + L}{T + L} \cdot \rho \cdot \left[\frac{T}{\rho_1^3} + \frac{L}{\rho_2^3} \right] \text{ по направлению } \Theta S \\
+            W_2 = f \cdot \frac{S + T + L}{\left(T + L\right)^2} \cdot T \cdot L \cdot r \left[\frac{1}{\rho_1^3} - \frac{L}{\rho_2^3} \right] \text{ по направлению } \Theta L
+        \end{aligned}
+    \end{equation*}
+    Но
+    \begin{equation*}
+        \begin{aligned}
+            \rho_1^2 &= \rho^2 + 2\rho \cdot \frac{L}{T + L} \cdot r \cos{\omega} + \left(\frac{L}{T + L} \cdot r \right)^2 \\
+            \rho_2^2 &= \rho^2 + 2\rho \cdot \frac{T}{T + L} \cdot r \cos{\omega} + \left(\frac{T}{T + L} \cdot r \right)^2
+        \end{aligned}
+    \end{equation*}
+    следовательно:
+    \begin{equation*}
+       \begin{aligned}
+            \frac{1}{\rho_1^3} &= \frac{1}{\rho^3} \left[1 + 3 \frac{L}{T + L}\cos{\omega} + \left(\frac{L}{T + L} r \right)^2 \left(- \frac{3}{2} + \frac{15}{2} \cos^2{\omega} \right) + \dots \right] \\
+            \frac{1}{\rho_2^3} &= \frac{1}{\rho^3} \left[1 + 3 \frac{L}{T + L}\cos{\omega} + \left(\frac{L}{T + L} r \right)^2 \left(- \frac{3}{2} + \frac{15}{2} \cos^2{\omega} \right) + \dots \right]
+        \end{aligned}
+    \end{equation*}
+
+    Подставляя эти выражения, имеем:
+    \begin{equation*}
+        \begin{aligned}
+            W_1 &= f \cdot \frac{S + T + L}{T + L} \left[1 + \frac{T \cdot L}{\left(T + L \right)^2} \cdot \frac{r^2}{\rho^2} \left(- \frac{3}{2} + \frac{15}{2} \cos^2{\omega} \right) + \dots \right] \\
+            W_2 &= f \cdot \frac{S + T + L}{T + L} \left[1 + \frac{T \cdot L}{\left(T + L \right)^2} \cdot \frac{r^2}{\rho^2} \cos{\omega} + \dots \right]
+        \end{aligned}
+    \end{equation*}
+
+    Но отношения
+    \[\frac{L}{T + L} \approx \frac{1}{80}; \frac{r}{\rho} \approx \frac{1}{400}; \left(\frac{r}{\rho} \right)^2 = \frac{1}{160000} \]
+    поэтому будет
+    \[\frac{T \cdot L}{\left(T + L \right)^2} \cdot \frac{r^2}{\rho^2} \approx \frac{1}{12800000} \]
+    и члены, содержащие этот множитель, могут быть отброшены, так что будет:
+    \begin{equation*}
+        \begin{aligned}
+            W_1 &= f \cdot \frac{S + T + L}{\rho^2} \text{ по направлению } \Theta S \\
+            W_2 &= 0 \text{ по направлению } \Theta L
+        \end{aligned}
+    \end{equation*}
+
+    Отсюда следует, что точка $\Theta$ движется вокруг Солнца по элиптической орбите за по законам Кеплера.
+
+    Рассмотрим теперь ускорение Луны по отношению к Земле, для чего к ускорениям, сообщаемым Луне Солнцем и Землёю, надо присовокупить ускорение, равное и противоположное ускорению Земли, происходящему от действия Солнца и Луны. Поступив подобно предыдущему, получим:
+    \begin{equation*}
+        \begin{aligned}
+            f \cdot \frac{T + L}{r^2} + f \cdot S \left[\frac{r_2}{\rho_2^3} + \frac{r_1}{\rho_1^3} \right] \text{ по направлению } L \Theta \\
+            f \cdot S \cdot \rho \left[\frac{1}{\rho_2^3} - \frac{1}{\rho_1^3} \right] \text{ по направлению } \Theta S
+        \end{aligned}
+    \end{equation*}
+    положим:
+    \[T + L = \mu ; S = M \]
+
+    \listoftables
+
+    \listoffigures
+\end{document}
